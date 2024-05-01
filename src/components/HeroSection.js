@@ -11,9 +11,9 @@ export default function HeroSection({ setAllProductsData }) {
   return (
     <Container fluid>
       <Row>
-        <div className="text-center">
+        <div className="text-center background">
           <img src={Diamond} alt="diamond" className="diamondImg" />
-          <h1 className="red-hat-display-main" id="title">
+          <h1 className="red-hat-display-main ms-4" id="title">
             STOP
             <span className="red-hat-display-main" id="En">
               N
@@ -26,7 +26,7 @@ export default function HeroSection({ setAllProductsData }) {
           <div className=" btn--container mt-3 mt-md-5">
             <Link to={"/products"}>
               <button className="btn--shop" id="btnshop">
-                <span>SHOP </span>
+                <span>SHOP</span>
               </button>
             </Link>
             {user.id !== null ? null : (

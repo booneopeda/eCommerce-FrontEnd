@@ -105,7 +105,7 @@ export default function Register() {
   return user.id !== null ? (
     <Navigate to="/login" />
   ) : (
-    <Container fluid className="background">
+    <Container fluid>
       <Row>
         <Col className="registerFormContainer text-center container-fluid">
           <Form

@@ -14,7 +14,7 @@ function MyOrders({
     setDisplayOrders(
       userOrders?.map((order) => {
         return (
-          <Accordion style={{ marginTop: "2rem" }}>
+          <Accordion style={{ marginTop: "5rem" }}>
             <Accordion.Item
               style={{ backgroundColor: "rgba(229, 199, 171, 0.1)" }}
             >

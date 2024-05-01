@@ -22,8 +22,8 @@ export default function AdminDashBoard({
 
   useEffect(() => {
     let fetchUrl = user.isAdmin
-      ? `${process.env.REACT_APP_API_BASE_URL}/products/all`
-      : `${process.env.REACT_APP_API_BASE_URL}/products/`;
+      ? `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/all`
+      : `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/`;
 
     fetch(fetchUrl, {
       headers: {
@@ -34,7 +34,7 @@ export default function AdminDashBoard({
       .then((data) => {
         setProducts(data.products);
         fetch(
-          `${process.env.REACT_APP_API_BASE_URL}/orders/all-orders`,
+          `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/orders/all-orders`,
           {
             method: "GET",
             headers: {

@@ -16,13 +16,16 @@ function ProductsCatalogView({
 
   useEffect(() => {
     if (user.id !== null) {
-      fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      fetch(
+        `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/add-to-cart`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (

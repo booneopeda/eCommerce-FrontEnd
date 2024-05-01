@@ -46,7 +46,7 @@ export default function ProductDetailsView({
   }
 
   function clearCart() {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/clear-cart`, {
+    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/clear-cart`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -57,7 +57,7 @@ export default function ProductDetailsView({
   const checkOut = (e, name, description, price, user, productId) => {
     e.preventDefault();
 
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
+    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/add-to-cart`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -70,7 +70,7 @@ export default function ProductDetailsView({
           data.cart[0].cartItems.length === 0
         ) {
           fetch(
-            `${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`,
+            `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/add-to-cart`,
             {
               method: "POST",
               headers: {
@@ -93,7 +93,7 @@ export default function ProductDetailsView({
             .then((res) => res.json())
             .then((data) => {
               fetch(
-                `${process.env.REACT_APP_API_BASE_URL}/orders/checkout`,
+                `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/orders/checkout`,
                 {
                   method: "POST",
                   headers: {
@@ -126,7 +126,7 @@ export default function ProductDetailsView({
 
   const addToCart = (user, productId, quantity, price) => {
     console.log(user);
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
+    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/add-to-cart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

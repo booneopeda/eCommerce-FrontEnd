@@ -34,7 +34,7 @@ function App() {
 
   const retieveUserDetails = (token) => {
     if (token) {
-      fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details`, {
+      fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/users/details`, {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())
@@ -62,8 +62,8 @@ function App() {
 
   const fetchData = () => {
     let fetchUrl = user.isAdmin
-      ? `${process.env.REACT_APP_API_BASE_URL}/products/all`
-      : `${process.env.REACT_APP_API_BASE_URL}/products/`;
+      ? `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/all`
+      : `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/`;
 
     fetch(fetchUrl, {
       headers: {
@@ -73,7 +73,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details`, {
+        fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/users/details`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -82,7 +82,7 @@ function App() {
           .then((user) => {
             setUserDetails(user.user);
             if (user.user?.isAdmin) {
-              fetch(`${process.env.REACT_APP_API_BASE_URL}/products/all`, {
+              fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/all`, {
                 headers: {
                   "Content-Type": "application/json",
                   Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -97,11 +97,11 @@ function App() {
       });
   };
   const fetchProductsData = () => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/`)
+    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/`)
       .then((res) => res.json())
       .then((activeProducts) => {
         setActiveProducts(activeProducts.products);
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/my-orders`, {
+        fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/orders/my-orders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

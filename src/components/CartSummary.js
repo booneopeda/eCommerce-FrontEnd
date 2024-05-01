@@ -23,7 +23,7 @@ export default function CartSummary({
 
   function increment(productId, price, quantity) {
     fetch(
-      `${process.env.REACT_APP_API_BASE_URL}/cart/update-cart-quantity`,
+      `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/update-cart-quantity`,
       {
         method: "POST",
         headers: {
@@ -50,7 +50,7 @@ export default function CartSummary({
   function decrement(productId, price, quantity) {
     if (quantity >= 2) {
       fetch(
-        `${process.env.REACT_APP_API_BASE_URL}/cart/update-cart-quantity`,
+        `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/update-cart-quantity`,
         {
           method: "POST",
           headers: {
@@ -80,7 +80,7 @@ export default function CartSummary({
 
   function deleteCartItem(productId) {
     fetch(
-      `${process.env.REACT_APP_API_BASE_URL}/cart/${productId}/remove-from-cart`,
+      `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/${productId}/remove-from-cart`,
       {
         method: "PATCH",
         headers: {
@@ -92,7 +92,7 @@ export default function CartSummary({
       .then((res) => res.json())
       .then((data) => {
         fetch(
-          `${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`,
+          `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/add-to-cart`,
           {
             method: "GET",
             headers: {
@@ -116,7 +116,7 @@ export default function CartSummary({
   }
 
   function handleCheckOut() {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/checkout`, {
+    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/orders/checkout`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -139,7 +139,7 @@ export default function CartSummary({
   }
 
   function clearCart() {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/clear-cart`, {
+    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/clear-cart`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -159,7 +159,7 @@ export default function CartSummary({
   }
 
   function fetchCartData() {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
+    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/add-to-cart`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,

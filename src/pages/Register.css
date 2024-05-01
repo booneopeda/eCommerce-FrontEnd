@@ -9,6 +9,7 @@
   padding-left: 50px;
   padding-right: 50px;
   padding-bottom: 20px;
+  margin-bottom: 8rem;
 }
 
 .background-regform {
@@ -17,8 +18,7 @@
 }
 .background-regpage {
   background-color: #2d1b07;
-  width: 100vw;
-  height: 50rem;
+
   padding-top: 50px;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
     url(../assets/images/herosection.png);

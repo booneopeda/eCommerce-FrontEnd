@@ -4,7 +4,8 @@
 
 .loginForm {
   border: solid thin black;
-  margin-top: 50px;
+  margin-top: 8rem;
+  margin-bottom: 8rem;
   padding-bottom: 80px;
   border-radius: 20px;
   padding-left: 50px;
@@ -12,10 +13,6 @@
   background-color: rgba(229, 199, 171, 0.5);
 }
 .background-loginpage {
-  background-color: #2d1b07;
-  width: 100vw;
-  height: 50rem;
-  padding-top: 50px;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)),
     url(../assets/images/herosection.png);
   background-repeat: no-repeat;

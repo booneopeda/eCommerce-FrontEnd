@@ -20,7 +20,7 @@ function ProductCard({
   const [price, setPrice] = useState("");
 
   const showDetailsModal = (productId) => {
-    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/products/${productId}`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${productId}`)
       .then((res) => res.json())
       .then((data) => {
         setName(data.product.name);

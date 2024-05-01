@@ -16,7 +16,7 @@ function ProductsCatalogView({
 
   useEffect(() => {
     if (user.id !== null) {
-      fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/cart/add-to-cart`, {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

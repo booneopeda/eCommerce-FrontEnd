@@ -20,7 +20,7 @@ export default function Register() {
 
   function registerUser(e) {
     e.preventDefault();
-    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/users/`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -20,19 +20,16 @@ export default function ChangePassword() {
   const changePassword = (e) => {
     e.preventDefault();
 
-    fetch(
-      `https://ecommerce-webapp-aokf.onrender.com/b7/users/update-password`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify({
-          newPassword: password,
-        }),
-      }
-    )
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/update-password`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        newPassword: password,
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         if (data.message === "Password updated successfully") {

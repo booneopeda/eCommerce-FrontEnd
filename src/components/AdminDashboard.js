@@ -22,8 +22,8 @@ export default function AdminDashBoard({
 
   useEffect(() => {
     let fetchUrl = user.isAdmin
-      ? `https://ecommerce-webapp-aokf.onrender.com/b7/products/all`
-      : `https://ecommerce-webapp-aokf.onrender.com/b7/products/`;
+      ? `${process.env.REACT_APP_API_BASE_URL}/products/all`
+      : `${process.env.REACT_APP_API_BASE_URL}/products/`;
 
     fetch(fetchUrl, {
       headers: {
@@ -34,7 +34,7 @@ export default function AdminDashBoard({
       .then((data) => {
         setProducts(data.products);
         fetch(
-          `https://ecommerce-webapp-aokf.onrender.com/b7/orders/all-orders`,
+          `${process.env.REACT_APP_API_BASE_URL}/orders/all-orders`,
           {
             method: "GET",
             headers: {

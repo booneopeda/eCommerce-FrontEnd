@@ -34,7 +34,7 @@ function App() {
 
   const retieveUserDetails = (token) => {
     if (token) {
-      fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/users/details`, {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details`, {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())
@@ -62,8 +62,8 @@ function App() {
 
   const fetchData = () => {
     let fetchUrl = user.isAdmin
-      ? `https://ecommerce-webapp-aokf.onrender.com/b7/products/all`
-      : `https://ecommerce-webapp-aokf.onrender.com/b7/products/`;
+      ? `${process.env.REACT_APP_API_BASE_URL}/products/all`
+      : `${process.env.REACT_APP_API_BASE_URL}/products/`;
 
     fetch(fetchUrl, {
       headers: {
@@ -73,7 +73,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
-        fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/users/details`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -82,15 +82,12 @@ function App() {
           .then((user) => {
             setUserDetails(user.user);
             if (user.user?.isAdmin) {
-              fetch(
-                `https://ecommerce-webapp-aokf.onrender.com/b7/products/all`,
-                {
-                  headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("token")}`,
-                  },
-                }
-              )
+              fetch(`${process.env.REACT_APP_API_BASE_URL}/products/all`, {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+              })
                 .then((res) => res.json())
                 .then((productData) => {
                   setAllProductsData(productData);
@@ -100,11 +97,11 @@ function App() {
       });
   };
   const fetchProductsData = () => {
-    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/products/`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/`)
       .then((res) => res.json())
       .then((activeProducts) => {
         setActiveProducts(activeProducts.products);
-        fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/orders/my-orders`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/my-orders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

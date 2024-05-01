@@ -80,7 +80,7 @@ function ProductCard({
       <Link onClick={() => showDetailsModal(product._id)} id="modal-link">
         <Card
           style={{
-            width: "8rem",
+            width: "11rem",
             textAlign: "center",
             margin: "1rem",
             backgroundColor: "rgba(229, 199, 171, 1)",
@@ -91,7 +91,7 @@ function ProductCard({
             variant="top"
             src={product.imgUrl}
             alt="productPhoto"
-            style={{ height: "8rem" }}
+            style={{ height: "10rem" }}
           />
           <Card.Body>
             <Card.Title

@@ -1,6 +1,7 @@
 import { useEffect, useContext } from "react";
 import ProductCard from "./ProductCard";
 import UserContext from "../UserContext.js";
+import { Container, Row, Col } from "react-bootstrap";
 
 function ProductsCatalogView({
   productsData,
@@ -44,22 +45,26 @@ function ProductsCatalogView({
       >
         Products Catalog
       </h1>
-      <div className="d-flex flex-wrap container-fluid justify-content-center pb-5">
-        {productsData.map((product) => {
-          return (
-            <ProductCard
-              key={product._id}
-              product={product}
-              showCart={showCart}
-              setShowCart={setShowCart}
-              fetchData={fetchData}
-              isEmpty={isEmpty}
-              setIsEmpty={setIsEmpty}
-              fetchProductsData={fetchProductsData}
-            />
-          );
-        })}
-      </div>
+      <Container>
+        <Row>
+          <Col className=" d-flex flex-wrap justify-content-center">
+            {productsData.map((product) => {
+              return (
+                <ProductCard
+                  key={product._id}
+                  product={product}
+                  showCart={showCart}
+                  setShowCart={setShowCart}
+                  fetchData={fetchData}
+                  isEmpty={isEmpty}
+                  setIsEmpty={setIsEmpty}
+                  fetchProductsData={fetchProductsData}
+                />
+              );
+            })}
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }

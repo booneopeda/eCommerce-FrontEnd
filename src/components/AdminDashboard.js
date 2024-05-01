@@ -20,13 +20,16 @@ export default function AdminDashBoard({
     setShowOrderHistory(!showOrderHistory);
     let token = localStorage.getItem("token");
 
-    return fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/all-orders`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    return fetch(
+      `https://ecommerce-webapp-aokf.onrender.com/b7/orders/all-orders`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((orderData) => {
         setOrderSummary(orderData);
@@ -43,8 +46,8 @@ export default function AdminDashBoard({
 
   useEffect(() => {
     let fetchUrl = user.isAdmin
-      ? `${process.env.REACT_APP_API_BASE_URL}/products/all`
-      : `${process.env.REACT_APP_API_BASE_URL}/products/`;
+      ? `https://ecommerce-webapp-aokf.onrender.com/b7/products/all`
+      : `https://ecommerce-webapp-aokf.onrender.com/b7/products/`;
 
     fetch(fetchUrl, {
       headers: {

@@ -22,7 +22,7 @@ export default function Login({
   function authenticate(e) {
     e.preventDefault();
 
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`, {
+    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function Login({
       });
   }
   function registerGoogleUser(decoded) {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/`, {
+    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/users/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export default function Login({
       });
   }
   function loginGoogleUser(decoded) {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`, {
+    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -123,7 +123,7 @@ export default function Login({
     const token = credentialResponse.credential;
     const decoded = jwtDecode(token);
 
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/checkEmail`, {
+    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/users/checkEmail`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -15,7 +15,7 @@ export default function EditProduct({ product, fetchData }) {
   const [showEdit, setShowEdit] = useState(false);
 
   const openEdit = (productId) => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${productId}`)
+    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/products/${productId}`)
       .then((res) => res.json())
       .then((data) => {
         setProductId(data.product._id);
@@ -40,7 +40,7 @@ export default function EditProduct({ product, fetchData }) {
     e.preventDefault();
 
     fetch(
-      `${process.env.REACT_APP_API_BASE_URL}/products/${productId}/update`,
+      `https://ecommerce-webapp-aokf.onrender.com/b7/products/${productId}/update`,
       {
         method: "PATCH",
         headers: {

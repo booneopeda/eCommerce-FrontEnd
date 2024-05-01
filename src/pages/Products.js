@@ -22,8 +22,8 @@ export default function Products({
   useEffect(() => {
     if (user !== undefined) {
       let fetchUrl = user.isAdmin
-        ? `${process.env.REACT_APP_API_BASE_URL}/products/all`
-        : `${process.env.REACT_APP_API_BASE_URL}/products/`;
+        ? `https://ecommerce-webapp-aokf.onrender.com/b7/products/all`
+        : `https://ecommerce-webapp-aokf.onrender.com/b7/products/`;
 
       fetch(fetchUrl, {
         headers: {
@@ -33,7 +33,7 @@ export default function Products({
         .then((res) => res.json())
         .then((data) => setProducts(data.products));
       if (user.isAdmin === false) {
-        fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
+        fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/cart/add-to-cart`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

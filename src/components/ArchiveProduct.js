@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 export default function ArchiveProduct({ product, isActive, fetchData }) {
   const archiveToggle = (productId) => {
     fetch(
-      `${process.env.REACT_APP_API_BASE_URL}/products/${productId}/archive`,
+      `https://ecommerce-webapp-aokf.onrender.com/b7/products/${productId}/archive`,
       {
         method: "PATCH",
         headers: {
@@ -41,7 +41,7 @@ export default function ArchiveProduct({ product, isActive, fetchData }) {
 
   const activateToggle = (productId) => {
     fetch(
-      `${process.env.REACT_APP_API_BASE_URL}/products/${productId}/activate`,
+      `https://ecommerce-webapp-aokf.onrender.com/b7/products/${productId}/activate`,
       {
         method: "PATCH",
         headers: {

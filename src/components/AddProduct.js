@@ -27,7 +27,7 @@ export default function AddProduct({ fetchData }) {
 
     let token = localStorage.getItem("token");
 
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/`, {
+    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/products/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

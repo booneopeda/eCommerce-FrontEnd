@@ -10,16 +10,19 @@ function OrderHistoryItem({ user, orderData, fetchData, allProductsData }) {
   const [userData, setUserData] = useState([]);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/getUserDetails`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-      body: JSON.stringify({
-        userId: user,
-      }),
-    })
+    fetch(
+      `https://ecommerce-webapp-aokf.onrender.com/b7/users/getUserDetails`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({
+          userId: user,
+        }),
+      }
+    )
       .then((res) => res.json())
       .then((userData) => {
         setUserData(userData.user);

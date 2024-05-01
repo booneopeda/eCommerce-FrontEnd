@@ -46,7 +46,7 @@ export default function ProductDetailsView({
   }
 
   function clearCart() {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/clear-cart`, {
+    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/cart/clear-cart`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -57,7 +57,7 @@ export default function ProductDetailsView({
   const checkOut = (e, name, description, price, user, productId) => {
     e.preventDefault();
 
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
+    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/cart/add-to-cart`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -69,32 +69,38 @@ export default function ProductDetailsView({
           data.message === "No cart found" ||
           data.cart[0].cartItems.length === 0
         ) {
-          fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-            body: JSON.stringify({
-              cartItems: [
-                {
-                  productId: productId,
-                  quantity: quantity,
-                  subtotal: price * quantity,
-                },
-              ],
-              totalPrice: (price * quantity).toFixed(2),
-            }),
-            user: JSON.stringify(user),
-          })
+          fetch(
+            `https://ecommerce-webapp-aokf.onrender.com/b7/cart/add-to-cart`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+              body: JSON.stringify({
+                cartItems: [
+                  {
+                    productId: productId,
+                    quantity: quantity,
+                    subtotal: price * quantity,
+                  },
+                ],
+                totalPrice: (price * quantity).toFixed(2),
+              }),
+              user: JSON.stringify(user),
+            }
+          )
             .then((res) => res.json())
             .then((data) => {
-              fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/checkout`, {
-                method: "POST",
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-              })
+              fetch(
+                `https://ecommerce-webapp-aokf.onrender.com/b7/orders/checkout`,
+                {
+                  method: "POST",
+                  headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                  },
+                }
+              )
                 .then((res) => res.json())
                 .then((data) => {
                   fetchProductsData();
@@ -120,7 +126,7 @@ export default function ProductDetailsView({
 
   const addToCart = (user, productId, quantity, price) => {
     console.log(user);
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
+    fetch(`https://ecommerce-webapp-aokf.onrender.com/b7/cart/add-to-cart`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

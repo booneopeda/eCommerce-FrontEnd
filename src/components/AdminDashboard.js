@@ -18,30 +18,6 @@ export default function AdminDashBoard({
 
   function handleShowOrderHistory() {
     setShowOrderHistory(!showOrderHistory);
-    let token = localStorage.getItem("token");
-
-    return fetch(
-      `https://ecommerce-webapp-aokf.onrender.com/b7/orders/all-orders`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((orderData) => {
-        setOrderSummary(orderData);
-        let uniqueUserData = orderData.orders.reduce((acc, curr) => {
-          if (!acc.includes(curr.userId)) {
-            acc.push(curr.userId);
-          }
-          return acc;
-        }, []);
-
-        setUniqueUser(uniqueUserData);
-      });
   }
 
   useEffect(() => {
@@ -57,6 +33,28 @@ export default function AdminDashBoard({
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
+        fetch(
+          `https://ecommerce-webapp-aokf.onrender.com/b7/orders/all-orders`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((orderData) => {
+            setOrderSummary(orderData);
+            let uniqueUserData = orderData.orders.reduce((acc, curr) => {
+              if (!acc.includes(curr.userId)) {
+                acc.push(curr.userId);
+              }
+              return acc;
+            }, []);
+
+            setUniqueUser(uniqueUserData);
+          });
       });
   }, [productsData, user.isAdmin]);
 

@@ -41,7 +41,7 @@ function ProductsCatalogView({
     <>
       <h1
         className="text-center text-white"
-        style={{ marginTop: "3rem", marginBottom: "5rem" }}
+        style={{ marginTop: "5rem", marginBottom: "5rem" }}
       >
         Products Catalog
       </h1>

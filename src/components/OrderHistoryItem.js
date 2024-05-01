@@ -30,7 +30,7 @@ function OrderHistoryItem({ user, orderData, fetchData, allProductsData }) {
         setFirstName(userData.user.firstName);
         setLastName(userData.user.lastName);
       });
-  }, []);
+  }, [user]);
 
   return (
     <Container fluid>

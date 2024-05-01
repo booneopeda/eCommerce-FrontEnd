@@ -40,7 +40,7 @@ function OrderDataEntry({ orderData, userData, fetchData, allProductsData }) {
       })
     );
     console.log("orderdataentry useEffect");
-  }, [orderData, userData]);
+  }, [orderData, userData, fetchData, allProductsData, orders]);
 
   return <>{displayOrders}</>;
 }

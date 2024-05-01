@@ -37,7 +37,9 @@ export default function Products({
           `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/cart/add-to-cart`,
           {
             method: "GET",
+            mode: "cors",
             headers: {
+              "Access-Control-Allow-Origin": "*",
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },
           }

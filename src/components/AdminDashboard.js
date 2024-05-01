@@ -61,7 +61,6 @@ export default function AdminDashBoard({
   return (
     <>
       <h1 className="text-center text-white" style={{ marginTop: "4rem" }}>
-        {" "}
         Admin Dashboard
       </h1>
       <h2 className="text-center mt-5 text-white">
@@ -79,60 +78,61 @@ export default function AdminDashBoard({
         {showOrderHistory ? null : <AddProduct fetchData={fetchData} />}
       </Container>
 
-      {showOrderHistory ? (
-        <>
-          {uniqueUser.map((user) => {
-            return (
-              <OrderHistoryItem
-                key={user}
-                user={user}
-                orderData={orderSummary}
-                fetchData={fetchData}
-                allProductsData={allProductsData}
-              />
-            );
-          })}
-        </>
-      ) : (
-        <>
-          <div style={{ overflowX: "auto" }} className="mx-5">
-            <Container fluid>
-              <Row>
-                <table
-                  style={{
-                    border: "solid thin black",
-                    borderRadius: "8px",
-                    backgroundColor: "rgba(229, 199, 171, 0.6)",
-                    color: "white",
-                  }}
-                >
-                  <thead>
-                    <tr className="text-center">
-                      <th className="py-3">Name</th>
-                      <th>Description</th>
-                      <th className="px-5">Price</th>
-                      <th className="px-5">Availability</th>
-                      <th colSpan="2">Actions</th>
-                    </tr>
-                  </thead>
+      <div className={showOrderHistory ? "" : "hidden"}>
+        {uniqueUser.map((user) => {
+          return (
+            <OrderHistoryItem
+              key={user}
+              user={user}
+              orderData={orderSummary}
+              fetchData={fetchData}
+              allProductsData={allProductsData}
+            />
+          );
+        })}
+      </div>
 
-                  <tbody>
-                    {products.map((product) => {
-                      return (
-                        <AdminProductItem
-                          key={product._id}
-                          product={product}
-                          fetchData={fetchData}
-                        />
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </Row>
-            </Container>
-          </div>
-        </>
-      )}
+      <>
+        <div
+          style={{ overflowX: "auto" }}
+          className={showOrderHistory ? "hidden" : "mx-5"}
+        >
+          <Container fluid>
+            <Row>
+              <table
+                style={{
+                  border: "solid thin black",
+                  borderRadius: "8px",
+                  backgroundColor: "rgba(229, 199, 171, 0.6)",
+                  color: "white",
+                }}
+              >
+                <thead>
+                  <tr className="text-center">
+                    <th className="py-3">Name</th>
+                    <th>Description</th>
+                    <th className="px-5">Price</th>
+                    <th className="px-5">Availability</th>
+                    <th colSpan="2">Actions</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {products.map((product) => {
+                    return (
+                      <AdminProductItem
+                        key={product._id}
+                        product={product}
+                        fetchData={fetchData}
+                      />
+                    );
+                  })}
+                </tbody>
+              </table>
+            </Row>
+          </Container>
+        </div>
+      </>
     </>
   );
 }

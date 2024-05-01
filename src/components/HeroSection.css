@@ -96,3 +96,6 @@
   -o-background-size: cover;
   height: 100vh;
 }
+.hidden {
+  display: none;
+}

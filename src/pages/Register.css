@@ -4,6 +4,7 @@
 }
 
 .registerForm {
+  margin-top: 5rem;
   border: solid thin black;
   border-radius: 20px;
   padding-left: 50px;

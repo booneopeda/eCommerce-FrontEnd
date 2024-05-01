@@ -11,7 +11,7 @@ export default function HeroSection({ setAllProductsData }) {
   return (
     <Container fluid>
       <Row>
-        <div className="text-center background">
+        <div className="text-center">
           <img src={Diamond} alt="diamond" className="diamondImg" />
           <h1 className="red-hat-display-main" id="title">
             STOP

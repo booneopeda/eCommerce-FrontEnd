@@ -155,7 +155,7 @@ export default function Login({
   ) : (
     <Container fluid>
       <Row>
-        <div className="background-loginpage">
+        <div className="">
           <div className="loginFormContainer text-center container-fluid">
             <div className="loginForm">
               <Form onSubmit={(e) => authenticate(e)}>

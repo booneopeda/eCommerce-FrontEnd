@@ -51,7 +51,7 @@ function App() {
   };
 
   const updateUI = (token) => {
-    if (token !== null) {
+    if (token !== `Bearer null`) {
       const decode = jwtDecode(token);
 
       setUser({

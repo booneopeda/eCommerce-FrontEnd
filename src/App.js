@@ -119,6 +119,7 @@ function App() {
       });
   };
   useEffect(() => {
+    updateUI(`Bearer ${localStorage.getItem("token")}`);
     fetchProductsData();
   }, []);
 

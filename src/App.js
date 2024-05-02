@@ -140,7 +140,7 @@ function App() {
                     className="me-3"
                   />
                   <h1 className="text-center  text-white">
-                    Free Tier Server Loading...
+                    Server Initializing...
                   </h1>
                 </Col>
               </Row>

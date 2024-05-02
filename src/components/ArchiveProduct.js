@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 export default function ArchiveProduct({ product, isActive, fetchData }) {
   const archiveToggle = (productId) => {
     fetch(
-      `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/${productId}/archive`,
+      `${process.env.REACT_APP_API_BASE_URL}/products/${productId}/archive`,
       {
         method: "PATCH",
         headers: {
@@ -41,7 +41,7 @@ export default function ArchiveProduct({ product, isActive, fetchData }) {
 
   const activateToggle = (productId) => {
     fetch(
-      `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/${productId}/activate`,
+      `${process.env.REACT_APP_API_BASE_URL}/products/${productId}/activate`,
       {
         method: "PATCH",
         headers: {

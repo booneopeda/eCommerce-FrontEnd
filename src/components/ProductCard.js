@@ -20,9 +20,7 @@ function ProductCard({
   const [price, setPrice] = useState("");
 
   const showDetailsModal = (productId) => {
-    fetch(
-      `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/${productId}`
-    )
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/${productId}`)
       .then((res) => res.json())
       .then((data) => {
         setName(data.product.name);

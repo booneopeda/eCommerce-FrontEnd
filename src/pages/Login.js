@@ -22,7 +22,7 @@ export default function Login({
   function authenticate(e) {
     e.preventDefault();
 
-    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/users/login`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function Login({
       });
   }
   function registerGoogleUser(decoded) {
-    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/users/`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export default function Login({
       });
   }
   function loginGoogleUser(decoded) {
-    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/users/login`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -123,7 +123,7 @@ export default function Login({
     const token = credentialResponse.credential;
     const decoded = jwtDecode(token);
 
-    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/users/checkEmail`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/checkEmail`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -5,6 +5,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
 import { UserProvider } from "./UserContext";
 import { jwtDecode } from "jwt-decode";
+import Loading from "./assets/images/loading.gif";
 
 import Login from "./pages/Login";
 import Logout from "./pages/Logout";
@@ -15,6 +16,7 @@ import HeroSection from "./components/HeroSection";
 import Error from "./pages/Error";
 import Profile from "./pages/Profile";
 import MyOrders from "./pages/MyOrders";
+import { Container, Col, Row } from "react-bootstrap";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -22,6 +24,7 @@ function App() {
   const [allProductsData, setAllProductsData] = useState([]);
   const [activeProducts, setActiveProducts] = useState([]);
   const [userOrders, setUserOrders] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const [user, setUser] = useState({
     id: null,
@@ -34,7 +37,7 @@ function App() {
 
   const retieveUserDetails = (token) => {
     if (token) {
-      fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/users/details`, {
+      fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details`, {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then((res) => res.json())
@@ -62,8 +65,8 @@ function App() {
 
   const fetchData = () => {
     let fetchUrl = user.isAdmin
-      ? `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/all`
-      : `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/`;
+      ? `${process.env.REACT_APP_API_BASE_URL}/products/all`
+      : `${process.env.REACT_APP_API_BASE_URL}/products/`;
 
     fetch(fetchUrl, {
       headers: {
@@ -73,7 +76,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
-        fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/users/details`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/users/details`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
@@ -82,7 +85,7 @@ function App() {
           .then((user) => {
             setUserDetails(user.user);
             if (user.user?.isAdmin) {
-              fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/all`, {
+              fetch(`${process.env.REACT_APP_API_BASE_URL}/products/all`, {
                 headers: {
                   "Content-Type": "application/json",
                   Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -97,11 +100,11 @@ function App() {
       });
   };
   const fetchProductsData = () => {
-    fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/products/`)
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/products/`)
       .then((res) => res.json())
       .then((activeProducts) => {
         setActiveProducts(activeProducts.products);
-        fetch(`http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/orders/my-orders`, {
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/my-orders`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -111,62 +114,98 @@ function App() {
           .then((res) => res.json())
           .then((orders) => {
             setUserOrders(orders.orders);
+            setIsLoading(false);
           });
       });
   };
+  useEffect(() => {
+    fetchProductsData();
+  }, []);
 
   return (
-    <UserProvider value={{ user, setUser, unsetUser, retieveUserDetails }}>
-      <Router>
-        <Navigation retrieveUserDetails={retieveUserDetails} />
-        <Routes>
-          <Route path="/" element={<HeroSection />} />
-          <Route path="/register" element={<Register />} />
-          <Route
-            path="/login"
-            element={
-              <Login
-                fetchData={fetchData}
-                setAllProductsData={setAllProductsData}
-                fetchProductsData={fetchProductsData}
+    <>
+      {isLoading ? (
+        <>
+          <div
+            className="d-flex flex-wrap justify-content-center align-items-center"
+            style={{ height: "100vh" }}
+          >
+            <Container fluid>
+              <Row>
+                <Col className="d-flex justify-content-center">
+                  <img
+                    src={Loading}
+                    alt="loading"
+                    style={{ height: "50px", width: "50px" }}
+                    className="me-3"
+                  />
+                  <h1 className="text-center  text-white">
+                    Free Tier Server Loading...
+                  </h1>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <p className="text-white text-center">Please wait...</p>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        </>
+      ) : (
+        <UserProvider value={{ user, setUser, unsetUser, retieveUserDetails }}>
+          <Router>
+            <Navigation retrieveUserDetails={retieveUserDetails} />
+            <Routes>
+              <Route path="/" element={<HeroSection />} />
+              <Route path="/register" element={<Register />} />
+              <Route
+                path="/login"
+                element={
+                  <Login
+                    fetchData={fetchData}
+                    setAllProductsData={setAllProductsData}
+                    fetchProductsData={fetchProductsData}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <Profile userDetails={userDetails} fetchData={fetchData} />
-            }
-          />
-          <Route
-            path="/products"
-            element={
-              <Products
-                fetchData={fetchData}
-                products={products}
-                setProducts={setProducts}
-                allProductsData={allProductsData}
-                fetchProductsData={fetchProductsData}
+              <Route
+                path="/profile"
+                element={
+                  <Profile userDetails={userDetails} fetchData={fetchData} />
+                }
               />
-            }
-          />
-          <Route
-            path="/myorders"
-            element={
-              <MyOrders
-                activeProducts={activeProducts}
-                userOrders={userOrders}
-                fetchData={fetchData}
-                fetchProductsData={fetchProductsData}
+              <Route
+                path="/products"
+                element={
+                  <Products
+                    fetchData={fetchData}
+                    products={products}
+                    setProducts={setProducts}
+                    allProductsData={allProductsData}
+                    fetchProductsData={fetchProductsData}
+                  />
+                }
               />
-            }
-          />
-          <Route path="/logout" element={<Logout />} />
+              <Route
+                path="/myorders"
+                element={
+                  <MyOrders
+                    activeProducts={activeProducts}
+                    userOrders={userOrders}
+                    fetchData={fetchData}
+                    fetchProductsData={fetchProductsData}
+                  />
+                }
+              />
+              <Route path="/logout" element={<Logout />} />
 
-          <Route path="*" element={<Error />} />
-        </Routes>
-      </Router>
-    </UserProvider>
+              <Route path="*" element={<Error />} />
+            </Routes>
+          </Router>
+        </UserProvider>
+      )}
+    </>
   );
 }
 

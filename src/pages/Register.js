@@ -20,22 +20,19 @@ export default function Register() {
 
   function registerUser(e) {
     e.preventDefault();
-    fetch(
-      `http://ec2-18-222-62-228.us-east-2.compute.amazonaws.com/b7/users/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          mobileNo: mobileNo,
-          password: password,
-        }),
-      }
-    )
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/users/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        mobileNo: mobileNo,
+        password: password,
+      }),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

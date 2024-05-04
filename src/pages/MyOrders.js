@@ -15,7 +15,7 @@ function MyOrders({
     setDisplayOrders(
       userOrders?.map((order) => {
         return (
-          <Accordion style={{ marginTop: "5rem" }}>
+          <Accordion key={order.id}>
             <Accordion.Item
               style={{ backgroundColor: "rgba(229, 199, 171, 0.1)" }}
             >
@@ -49,6 +49,12 @@ function MyOrders({
       style={{ opacity: `${opacity}`, transition: "opacity 1s" }}
     >
       <Row>
+        <h1
+          className="text-center text-white"
+          style={{ marginTop: "6rem", marginBottom: "4rem" }}
+        >
+          My Orders
+        </h1>
         <div>
           {userOrders ? (
             displayOrders

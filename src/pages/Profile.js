@@ -21,7 +21,7 @@ function Profile({ userDetails, fetchData }) {
           style={{ opacity: `${opacity}`, transition: "opacity 1s" }}
         >
           <Row>
-            <div className="text-center background">
+            <div className="text-center">
               <div className="loginFormContainer text-center container-fluid">
                 <div className="loginForm" style={{ marginTop: "6rem" }}>
                   <h1 style={{ marginTop: "3rem" }}>Profile</h1>

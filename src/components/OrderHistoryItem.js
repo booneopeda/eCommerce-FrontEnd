@@ -8,6 +8,7 @@ function OrderHistoryItem({ user, orderData, fetchData, allProductsData }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userData, setUserData] = useState([]);
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/users/getUserDetails`, {
@@ -26,8 +27,21 @@ function OrderHistoryItem({ user, orderData, fetchData, allProductsData }) {
         setEmail(userData.user.email);
         setFirstName(userData.user.firstName);
         setLastName(userData.user.lastName);
+
+        let filteredOrders = [];
+
+        orderData.orders.map((order) => {
+          console.log(userData);
+          if (userData.user._id === order.userId) {
+            filteredOrders.push(order);
+          }
+
+          setOrders(filteredOrders);
+          return filteredOrders;
+        });
       });
-  }, [user]);
+    console.log("orders from useEffect", orders);
+  }, [user, orderData, fetchData, allProductsData]);
 
   return (
     <Container fluid>
@@ -48,6 +62,7 @@ function OrderHistoryItem({ user, orderData, fetchData, allProductsData }) {
                 userData={userData}
                 fetchData={fetchData}
                 allProductsData={allProductsData}
+                orders={orders}
               />
             </Accordion.Body>
           </Accordion.Item>

@@ -22,7 +22,7 @@ function PurchasedItems({
         setItemsBought(itemsPurchased);
       });
     });
-  }, [purchasedItemsData, fetchData, allProductsData]);
+  }, [purchasedItemsData, fetchData, allProductsData, orderData]);
 
   return (
     <div>

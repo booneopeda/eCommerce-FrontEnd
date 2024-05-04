@@ -20,6 +20,7 @@ export default function AdminDashBoard({
 
   function handleShowOrderHistory() {
     setShowOrderHistory(!showOrderHistory);
+    fetchData();
   }
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function AdminDashBoard({
             setIsLoading(false);
           });
       });
-  }, [productsData, user.isAdmin]);
+  }, [productsData, user.isAdmin, fetchData]);
 
   return (
     <>

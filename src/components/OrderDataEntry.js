@@ -1,19 +1,18 @@
 import { useEffect, useState } from "react";
 import PurchasedItems from "./PurchasedItems";
 
-function OrderDataEntry({ orderData, userData, fetchData, allProductsData }) {
-  const [orders, setOrders] = useState([]);
+function OrderDataEntry({
+  orderData,
+  userData,
+  fetchData,
+  allProductsData,
+  orders,
+}) {
   const [displayOrders, setDisplayOrders] = useState([]);
 
+  console.log("orders", orders);
+
   useEffect(() => {
-    let filteredOrders = [];
-    orderData.orders.map((order) => {
-      if (userData._id === order.userId) {
-        filteredOrders.push(order);
-      }
-      setOrders(filteredOrders);
-      return filteredOrders;
-    });
     setDisplayOrders(
       orders?.map((order) => {
         return (
@@ -40,7 +39,7 @@ function OrderDataEntry({ orderData, userData, fetchData, allProductsData }) {
       })
     );
     console.log("orderdataentry useEffect");
-  }, [orderData, userData, fetchData, allProductsData]);
+  }, [orderData, userData, fetchData, allProductsData, orders]);
 
   return <>{displayOrders}</>;
 }

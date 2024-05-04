@@ -9,6 +9,8 @@ export default function AdminDashBoard({
   productsData,
   fetchData,
   allProductsData,
+  isLoading,
+  setIsLoading,
 }) {
   const { user } = useContext(UserContext);
   const [products, setProducts] = useState(productsData);
@@ -33,20 +35,17 @@ export default function AdminDashBoard({
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
-        fetch(
-          `${process.env.REACT_APP_API_BASE_URL}/orders/all-orders`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        )
+        fetch(`${process.env.REACT_APP_API_BASE_URL}/orders/all-orders`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
           .then((res) => res.json())
           .then((orderData) => {
             setOrderSummary(orderData);
-            let uniqueUserData = orderData.orders.reduce((acc, curr) => {
+            let uniqueUserData = orderData.orders?.reduce((acc, curr) => {
               if (!acc.includes(curr.userId)) {
                 acc.push(curr.userId);
               }
@@ -54,6 +53,7 @@ export default function AdminDashBoard({
             }, []);
 
             setUniqueUser(uniqueUserData);
+            setIsLoading(false);
           });
       });
   }, [productsData, user.isAdmin]);

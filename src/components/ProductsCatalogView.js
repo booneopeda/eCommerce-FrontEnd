@@ -11,8 +11,11 @@ function ProductsCatalogView({
   isEmpty,
   setIsEmpty,
   fetchProductsData,
+  setIsLoading,
+  isLoading,
 }) {
   const { user } = useContext(UserContext);
+  console.log(isLoading);
 
   useEffect(() => {
     if (user.id !== null) {
@@ -49,6 +52,8 @@ function ProductsCatalogView({
         <Row>
           <Col className=" d-flex flex-wrap justify-content-center">
             {productsData.map((product) => {
+              setIsLoading(false);
+
               return (
                 <ProductCard
                   key={product._id}

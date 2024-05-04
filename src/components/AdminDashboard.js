@@ -17,6 +17,7 @@ export default function AdminDashBoard({
   const [showOrderHistory, setShowOrderHistory] = useState(false);
   const [uniqueUser, setUniqueUser] = useState([]);
   const [orderSummary, setOrderSummary] = useState([]);
+  const [opacity, setOpacity] = useState(0);
 
   function handleShowOrderHistory() {
     setShowOrderHistory(!showOrderHistory);
@@ -56,11 +57,14 @@ export default function AdminDashBoard({
             setUniqueUser(uniqueUserData);
             setIsLoading(false);
           });
+        setTimeout(() => {
+          setOpacity(1);
+        }, [900]);
       });
   }, [productsData, user.isAdmin, fetchData]);
 
   return (
-    <>
+    <div style={{ opacity: `${opacity}`, transition: "opacity 1s" }}>
       <h1 className="text-center text-white" style={{ marginTop: "4rem" }}>
         Admin Dashboard
       </h1>
@@ -134,6 +138,6 @@ export default function AdminDashBoard({
           </Container>
         </div>
       </>
-    </>
+    </div>
   );
 }

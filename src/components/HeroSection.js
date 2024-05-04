@@ -2,14 +2,23 @@ import "./HeroSection.css";
 import Diamond from "../assets/images/diamond.png";
 import { Link } from "react-router-dom";
 import UserContext from "../UserContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 
 export default function HeroSection({ setAllProductsData }) {
   const { user } = useContext(UserContext);
+  const [opacity, setOpacity] = useState(0);
+  useEffect(() => {
+    setTimeout(() => {
+      setOpacity(1);
+    }, []);
+  }, []);
 
   return (
-    <Container fluid>
+    <Container
+      fluid
+      style={{ opacity: `${opacity}`, transition: "opacity 1s" }}
+    >
       <Row>
         <div className="text-center background">
           <img src={Diamond} alt="diamond" className="diamondImg" />

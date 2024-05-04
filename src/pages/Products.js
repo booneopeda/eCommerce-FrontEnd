@@ -20,6 +20,7 @@ export default function Products({
   const [isEmpty, setIsEmpty] = useState(true);
   const [showCart, setShowCart] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
     if (user !== undefined) {
@@ -34,6 +35,7 @@ export default function Products({
       })
         .then((res) => res.json())
         .then((data) => setProducts(data.products));
+
       if (user.isAdmin === false) {
         fetch(`${process.env.REACT_APP_API_BASE_URL}/cart/add-to-cart`, {
           method: "GET",
@@ -52,7 +54,6 @@ export default function Products({
               setIsEmpty(false);
             }
           });
-        console.log("products useEffect");
       }
     } else {
       return null;
@@ -116,6 +117,8 @@ export default function Products({
                   fetchProductsData={fetchProductsData}
                   setIsLoading={setIsLoading}
                   isLoading={isLoading}
+                  opacity={opacity}
+                  setOpacity={setOpacity}
                 />
               </>
             )}

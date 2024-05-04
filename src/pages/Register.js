@@ -17,6 +17,7 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [isActive, setIsActive] = useState(false);
+  const [opacity, setOpacity] = useState(0);
 
   function registerUser(e) {
     e.preventDefault();
@@ -100,12 +101,16 @@ export default function Register() {
     } else {
       setIsActive((i) => (i = false));
     }
+    setOpacity(1);
   }, [firstName, lastName, email, mobileNo, password, confirmPassword]);
 
   return user.id !== null ? (
     <Navigate to="/login" />
   ) : (
-    <Container fluid>
+    <Container
+      fluid
+      style={{ opacity: `${opacity}`, transition: "opacity 1s" }}
+    >
       <Row>
         <Col className="registerFormContainer text-center container-fluid">
           <Form

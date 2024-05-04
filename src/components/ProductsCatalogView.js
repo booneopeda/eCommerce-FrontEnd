@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import ProductCard from "./ProductCard";
 import UserContext from "../UserContext.js";
 import { Container, Row, Col } from "react-bootstrap";
@@ -13,9 +13,10 @@ function ProductsCatalogView({
   fetchProductsData,
   setIsLoading,
   isLoading,
+  opacity,
+  setOpacity,
 }) {
   const { user } = useContext(UserContext);
-  console.log(isLoading);
 
   useEffect(() => {
     if (user.id !== null) {
@@ -41,7 +42,7 @@ function ProductsCatalogView({
   }, []);
 
   return (
-    <>
+    <div style={{ opacity: `${opacity}`, transition: "opacity 1s" }}>
       <h1
         className="text-center text-white"
         style={{ marginTop: "5rem", marginBottom: "5rem" }}
@@ -52,6 +53,9 @@ function ProductsCatalogView({
         <Row>
           <Col className=" d-flex flex-wrap justify-content-center">
             {productsData.map((product) => {
+              setTimeout(() => {
+                setOpacity(1);
+              }, [200]);
               setIsLoading(false);
 
               return (
@@ -70,7 +74,7 @@ function ProductsCatalogView({
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 }
 

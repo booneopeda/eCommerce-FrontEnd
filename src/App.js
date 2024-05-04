@@ -25,6 +25,7 @@ function App() {
   const [activeProducts, setActiveProducts] = useState([]);
   const [userOrders, setUserOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [opacity, setOpacity] = useState(0);
 
   const [user, setUser] = useState({
     id: null,
@@ -115,6 +116,9 @@ function App() {
           .then((orders) => {
             setUserOrders(orders.orders);
             setIsLoading(false);
+            setTimeout(() => {
+              setOpacity(1);
+            }, [500]);
           });
       });
   };
@@ -158,7 +162,12 @@ function App() {
           <Router>
             <Navigation retrieveUserDetails={retieveUserDetails} />
             <Routes>
-              <Route path="/" element={<HeroSection />} />
+              <Route
+                path="/"
+                element={
+                  <HeroSection opacity={opacity} setOpacity={setOpacity} />
+                }
+              />
               <Route path="/register" element={<Register />} />
               <Route
                 path="/login"

@@ -18,6 +18,7 @@ export default function Login({
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [opacity, setOpacity] = useState(0);
 
   function authenticate(e) {
     e.preventDefault();
@@ -148,12 +149,16 @@ export default function Login({
     } else {
       setIsActive(false);
     }
+    setOpacity(1);
   }, [email, password]);
 
   return user.id !== null ? (
     <Navigate to="/products" />
   ) : (
-    <Container fluid>
+    <Container
+      fluid
+      style={{ opacity: `${opacity}`, transition: "opacity 1s" }}
+    >
       <Row>
         <div className="">
           <div className="loginFormContainer text-center container-fluid">

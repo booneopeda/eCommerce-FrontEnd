@@ -9,6 +9,7 @@ function MyOrders({
   fetchProductsData,
 }) {
   const [displayOrders, setDisplayOrders] = useState([]);
+  const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
     setDisplayOrders(
@@ -38,10 +39,15 @@ function MyOrders({
         );
       })
     );
+    setOpacity(1);
   }, []);
 
   return (
-    <Container fluid className="background-productpage">
+    <Container
+      fluid
+      className="background-productpage"
+      style={{ opacity: `${opacity}`, transition: "opacity 1s" }}
+    >
       <Row>
         <div>
           {userOrders ? (

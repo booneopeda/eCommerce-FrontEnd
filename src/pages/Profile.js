@@ -6,15 +6,20 @@ import ChangePassword from "../components/ChangePassword.js";
 
 function Profile({ userDetails, fetchData }) {
   const { user } = useContext(UserContext);
+  const [opacity, setOpacity] = useState(0);
 
   useEffect(() => {
     fetchData();
+    setOpacity(1);
   }, []);
 
   return (
     <>
       {user.id !== null ? (
-        <Container fluid>
+        <Container
+          fluid
+          style={{ opacity: `${opacity}`, transition: "opacity 1s" }}
+        >
           <Row>
             <div className="text-center background">
               <div className="loginFormContainer text-center container-fluid">

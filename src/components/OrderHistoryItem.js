@@ -31,7 +31,6 @@ function OrderHistoryItem({ user, orderData, fetchData, allProductsData }) {
         let filteredOrders = [];
 
         orderData.orders.map((order) => {
-          console.log(userData);
           if (userData.user._id === order.userId) {
             filteredOrders.push(order);
           }
@@ -40,7 +39,6 @@ function OrderHistoryItem({ user, orderData, fetchData, allProductsData }) {
           return filteredOrders;
         });
       });
-    console.log("orders from useEffect", orders);
   }, [user, orderData, fetchData, allProductsData]);
 
   return (

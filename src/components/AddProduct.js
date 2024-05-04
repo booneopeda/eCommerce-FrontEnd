@@ -42,7 +42,6 @@ export default function AddProduct({ fetchData }) {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.error === "Product already exists.") {
           Swal.fire({
             icon: "error",

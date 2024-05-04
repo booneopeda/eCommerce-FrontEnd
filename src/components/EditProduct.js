@@ -57,7 +57,6 @@ export default function EditProduct({ product, fetchData }) {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.message === "Product updated  successfully") {
           Swal.fire({
             title: "Success",

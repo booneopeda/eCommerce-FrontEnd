@@ -216,9 +216,7 @@ export default function Login({
                         onSuccess={(credentialResponse) => {
                           checkEmailDuplicate(credentialResponse);
                         }}
-                        onError={() => {
-                          console.log("Login Failed");
-                        }}
+                        onError={() => {}}
                       />
                     </div>
                   </>

@@ -10,8 +10,6 @@ function OrderDataEntry({
 }) {
   const [displayOrders, setDisplayOrders] = useState([]);
 
-  console.log("orders", orders);
-
   useEffect(() => {
     setDisplayOrders(
       orders?.map((order) => {
@@ -38,7 +36,6 @@ function OrderDataEntry({
         );
       })
     );
-    console.log("orderdataentry useEffect");
   }, [orderData, userData, fetchData, allProductsData, orders]);
 
   return <>{displayOrders}</>;

@@ -15,27 +15,33 @@ function MyOrders({
     setDisplayOrders(
       userOrders?.map((order) => {
         return (
-          <Accordion key={order.id}>
-            <Accordion.Item
-              style={{ backgroundColor: "rgba(229, 199, 171, 0.1)" }}
+          <Container fluid className="d-flex justify-content-center">
+            <Accordion
+              key={order.id}
+              className="mx-4"
+              style={{ width: "90vw" }}
             >
-              <Accordion.Header>
-                <h6>
-                  {` Ordered on: ${order.orderedOn.toString().slice(0, 10)}`}
-                </h6>
-              </Accordion.Header>
-              <Accordion.Body className="text-white">
-                <ItemsOrdered
-                  key={order.id}
-                  itemsOrdered={order.productsOrdered}
-                  activeProducts={activeProducts}
-                />
-                <h6 className="mt-2">{`Total Price: Php. ${Number(
-                  order.totalPrice
-                ).toFixed(2)}`}</h6>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
+              <Accordion.Item
+                style={{ backgroundColor: "rgba(229, 199, 171, 0.1)" }}
+              >
+                <Accordion.Header>
+                  <h6>
+                    {` Ordered on: ${order.orderedOn.toString().slice(0, 10)}`}
+                  </h6>
+                </Accordion.Header>
+                <Accordion.Body className="text-white">
+                  <ItemsOrdered
+                    key={order.id}
+                    itemsOrdered={order.productsOrdered}
+                    activeProducts={activeProducts}
+                  />
+                  <h6 className="mt-2">{`Total Price: Php. ${Number(
+                    order.totalPrice
+                  ).toFixed(2)}`}</h6>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </Container>
         );
       })
     );

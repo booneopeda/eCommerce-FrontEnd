@@ -55,7 +55,6 @@ function ProductsCatalogView({
           display: "flex",
           justifyContent: "center",
           flexWrap: "wrap",
-          gap: "7px",
         }}
       >
         {productsData.map((product) => {

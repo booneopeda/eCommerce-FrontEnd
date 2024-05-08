@@ -37,9 +37,9 @@ function ProductCard({
       <Link onClick={() => showDetailsModal(product._id)} id="modal-link">
         <Card
           style={{
-            width: "15rem",
+            maxWidth: "18vw",
             textAlign: "center",
-            margin: "1rem",
+
             backgroundColor: "rgba(229, 199, 171, 1)",
           }}
           className="d-none d-lg-flex"
@@ -48,7 +48,7 @@ function ProductCard({
             variant="top"
             src={product.imgUrl}
             alt="productPhoto"
-            style={{ height: "17rem" }}
+            style={{ height: "20vw" }}
           />
           <Card.Body>
             <Card.Title className="overflow-hidden text-truncate text-nowrap">
@@ -80,9 +80,10 @@ function ProductCard({
       <Link onClick={() => showDetailsModal(product._id)} id="modal-link">
         <Card
           style={{
-            width: "9.6rem",
+            maxWidth: "9.6rem",
+
             textAlign: "center",
-            margin: ".5rem",
+
             backgroundColor: "rgba(229, 199, 171, 1)",
           }}
           className="d-lg-none"

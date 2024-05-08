@@ -211,7 +211,7 @@ export default function Login({
                 {process.env.REACT_APP_GOOGLE_CLIENT_ID !== undefined ? (
                   <>
                     <p>or</p>
-                    <div className="d-flex justify-content-center ">
+                    <div id="google-login-button">
                       <GoogleLogin
                         onSuccess={(credentialResponse) => {
                           checkEmailDuplicate(credentialResponse);

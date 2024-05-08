@@ -49,3 +49,8 @@
 .register-link:hover {
   text-decoration: underline;
 }
+
+#google-login-button {
+  display: flex;
+  justify-content: center;
+}

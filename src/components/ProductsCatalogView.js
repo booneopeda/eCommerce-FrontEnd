@@ -2,6 +2,7 @@ import { useEffect, useContext, useState } from "react";
 import ProductCard from "./ProductCard";
 import UserContext from "../UserContext.js";
 import { Container, Row, Col } from "react-bootstrap";
+import "./ProductsCatalogView.css";
 
 function ProductsCatalogView({
   productsData,
@@ -51,10 +52,15 @@ function ProductsCatalogView({
       </h1>
       <Container
         fluid
+        id="container-display"
         style={{
-          display: "flex",
-          justifyContent: "center",
-          flexWrap: "wrap",
+          display: "grid",
+          gridTemplate: "repeat(3, 1fr)/repeat(10, 1fr)",
+          gridAutoRows: "1fr",
+          width: "100%",
+          gridRowGap: "1rem",
+          gridColumnGap: ".5rem",
+          paddingRight: "20px",
         }}
       >
         {productsData.map((product) => {

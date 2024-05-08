@@ -49,30 +49,34 @@ function ProductsCatalogView({
       >
         Products Catalog
       </h1>
-      <Container>
-        <Row>
-          <Col className=" d-flex flex-wrap justify-content-center">
-            {productsData.map((product) => {
-              setTimeout(() => {
-                setOpacity(1);
-              }, [200]);
-              setIsLoading(false);
+      <Container
+        fluid
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexWrap: "wrap",
+          gap: "7px",
+        }}
+      >
+        {productsData.map((product) => {
+          setTimeout(() => {
+            setOpacity(1);
+          }, [200]);
+          setIsLoading(false);
 
-              return (
-                <ProductCard
-                  key={product._id}
-                  product={product}
-                  showCart={showCart}
-                  setShowCart={setShowCart}
-                  fetchData={fetchData}
-                  isEmpty={isEmpty}
-                  setIsEmpty={setIsEmpty}
-                  fetchProductsData={fetchProductsData}
-                />
-              );
-            })}
-          </Col>
-        </Row>
+          return (
+            <ProductCard
+              key={product._id}
+              product={product}
+              showCart={showCart}
+              setShowCart={setShowCart}
+              fetchData={fetchData}
+              isEmpty={isEmpty}
+              setIsEmpty={setIsEmpty}
+              fetchProductsData={fetchProductsData}
+            />
+          );
+        })}
       </Container>
     </div>
   );
